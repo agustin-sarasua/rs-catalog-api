@@ -1,6 +1,6 @@
 FROM golang:alpine
 
-ARG pkg=github.com/GoogleCloudPlatform/golang-samples/getting-started/bookshelf
+ARG pkg=github.com/agustin-sarasua/rs-catalog-api
 
 RUN apk add --no-cache ca-certificates
 
@@ -15,7 +15,7 @@ RUN set -ex \
 RUN go install $pkg/...
 
 # Needed for templates for the front-end app.
-WORKDIR $GOPATH/src/$pkg/app
+WORKDIR $GOPATH/src/$pkg
 
 # Users of the image should invoke either of the commands.
 CMD echo "Use the app or pubsub_worker commands."; exit 1
