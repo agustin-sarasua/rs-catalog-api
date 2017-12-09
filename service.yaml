@@ -21,15 +21,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: rs-catalog-api
+  name: rs-catalog-api-service
   labels:
     app: rs-catalog-api
-    tier: frontend
 spec:
   type: LoadBalancer
   ports:
-  - port: 80
-    targetPort: http-server
+  - protocol: TCP
+    port: 8080
+    nodePort: 30061
   selector:
     app: rs-catalog-api
-    tier: frontend
