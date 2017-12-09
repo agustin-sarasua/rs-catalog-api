@@ -29,6 +29,6 @@ spec:
   ports:
   - protocol: TCP
     port: 8080
-    nodePort: 30061
+    targetPort: http-server
   selector:
     app: rs-catalog-api
