@@ -26,7 +26,7 @@ func GetCatalogConfigurationEndpoint(w http.ResponseWriter, req *http.Request) {
 	if v, err := GetCatalogConfiguration(country, city); err != nil {
 		log.Printf("Error getting catalog")
 		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(m.BuildErrorResponse(err))
+		json.NewEncoder(w).Encode(m.BuildErrorResponse([]error{err}))
 	} else {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
