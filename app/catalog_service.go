@@ -3,6 +3,7 @@ package app
 import (
 	"errors"
 
+	c "github.com/agustin-sarasua/rs-common"
 	m "github.com/agustin-sarasua/rs-model"
 )
 
@@ -19,9 +20,9 @@ func GetCatalogConfiguration(countryCode string, citiyCode string) (*CatalogConf
 	var config CatalogConfigurationResponse
 
 	config = CatalogConfigurationResponse{
-		Amenities:      mapKeys(m.Amenities),
-		PropertyTypes:  mapKeys(m.PropertyTypes),
+		Amenities:      c.MapKeys(m.Amenities),
+		PropertyTypes:  c.MapKeys(m.PropertyTypes),
 		Neighbourhoods: city.Neigbourhoods,
-	}
+		Guarantees:     c.MapKeys(m.Guarantee)}
 	return &config, nil
 }

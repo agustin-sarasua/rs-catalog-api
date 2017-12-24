@@ -9,15 +9,15 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func mapKeys(m map[string]struct{}) []string {
-	keys := make([]string, len(m))
-	i := 0
-	for k := range m {
-		keys[i] = k
-		i++
-	}
-	return keys
-}
+// func mapKeys(m map[string]struct{}) []string {
+// 	keys := make([]string, len(m))
+// 	i := 0
+// 	for k := range m {
+// 		keys[i] = k
+// 		i++
+// 	}
+// 	return keys
+// }
 
 func GetCatalogConfigurationEndpoint(w http.ResponseWriter, req *http.Request) {
 	country, _ := mux.Vars(req)["country"]
