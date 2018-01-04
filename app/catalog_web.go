@@ -9,16 +9,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// func mapKeys(m map[string]struct{}) []string {
-// 	keys := make([]string, len(m))
-// 	i := 0
-// 	for k := range m {
-// 		keys[i] = k
-// 		i++
-// 	}
-// 	return keys
-// }
-
 func GetCatalogConfigurationEndpoint(w http.ResponseWriter, req *http.Request) {
 	country, _ := mux.Vars(req)["country"]
 	city, _ := mux.Vars(req)["city"]
@@ -34,9 +24,15 @@ func GetCatalogConfigurationEndpoint(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func ListCitiesEndpoint(w http.ResponseWriter, req *http.Request) {
-
-	w.Header().Set("Content-Type", "application/json")
-
-	w.WriteHeader(http.StatusOK)
+func GetCatalogCountryConfigurationEndpoint(w http.ResponseWriter, req *http.Request) {
+	country, _ := mux.Vars(req)["country"]
+	if v, err := GetCatalogCountryConfiguration(country); err != nil {
+		log.Printf("Error getting catalog")
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(m.BuildErrorResponse([]error{err}))
+	} else {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(v)
+	}
 }

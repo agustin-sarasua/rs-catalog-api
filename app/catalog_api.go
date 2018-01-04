@@ -6,3 +6,7 @@ type CatalogConfigurationResponse struct {
 	Amenities      []string
 	Guarantees     []string
 }
+
+type CatalogContryResponse struct {
+	Citites []string
+}

@@ -15,7 +15,7 @@ func GetCatalogConfiguration(countryCode string, citiyCode string) (*CatalogConf
 	}
 	city, exists := countryCitites.Cities[citiyCode]
 	if !exists {
-		return nil, errors.New("Country not valid")
+		return nil, errors.New("City not valid")
 	}
 	var config CatalogConfigurationResponse
 
@@ -25,4 +25,12 @@ func GetCatalogConfiguration(countryCode string, citiyCode string) (*CatalogConf
 		Neighbourhoods: city.Neigbourhoods,
 		Guarantees:     c.MapKeys(m.Guarantee)}
 	return &config, nil
+}
+
+func GetCatalogCountryConfiguration(countryCode string) (*m.CountryConfig, error) {
+	countryCitites, exists := m.CountryCitites[countryCode]
+	if !exists {
+		return nil, errors.New("Country not valid")
+	}
+	return &countryCitites, nil
 }
