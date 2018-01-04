@@ -5,12 +5,8 @@ import (
 )
 
 type CatalogConfigurationResponse struct {
-	Neighbourhoods []m.Neigbourhood
+	Neighbourhoods []m.NameCode
 	PropertyTypes  []string
 	Amenities      []string
 	Guarantees     []string
-}
-
-type CatalogContryResponse struct {
-	Citites []string
 }

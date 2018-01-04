@@ -8,15 +8,23 @@ import (
 )
 
 func GetCatalogConfiguration(countryCode string, citiyCode string) (*CatalogConfigurationResponse, error) {
-
 	countryCitites, exists := m.CountryCitites[countryCode]
 	if !exists {
 		return nil, errors.New("Country not valid")
 	}
-	city, exists := countryCitites.Cities[citiyCode]
-	if !exists {
+
+	var city *m.CityConfig
+	for _, v := range countryCitites.Cities {
+		if v.Code == citiyCode {
+			// Found!
+			city = &v
+			break
+		}
+	}
+	if city == nil {
 		return nil, errors.New("City not valid")
 	}
+
 	var config CatalogConfigurationResponse
 
 	config = CatalogConfigurationResponse{
