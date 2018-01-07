@@ -30,7 +30,7 @@ func GetCatalogConfiguration(countryCode string, citiyCode string) (*CatalogConf
 	config = CatalogConfigurationResponse{
 		Amenities:      c.MapKeys(m.Amenities),
 		PropertyTypes:  c.MapKeys(m.PropertyTypes),
-		Neighbourhoods: city.Neigbourhoods,
+		Neighbourhoods: city.Neighbourhoods,
 		Guarantees:     c.MapKeys(m.Guarantee)}
 	return &config, nil
 }
