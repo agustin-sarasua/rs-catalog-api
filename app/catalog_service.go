@@ -28,8 +28,6 @@ func GetCatalogConfiguration(countryCode string, citiyCode string) (*CatalogConf
 	var config CatalogConfigurationResponse
 
 	config = CatalogConfigurationResponse{
-		Amenities:      c.MapKeys(m.Amenities),
-		PropertyTypes:  c.MapKeys(m.PropertyTypes),
 		Neighbourhoods: city.Neighbourhoods,
 		Guarantees:     c.MapKeys(m.Guarantee)}
 	return &config, nil
@@ -41,4 +39,9 @@ func GetCatalogCountryConfiguration(countryCode string) (*m.CountryConfig, error
 		return nil, errors.New("Country not valid")
 	}
 	return &countryCitites, nil
+}
+
+func GetCatalogCountryPropertyTypes(countryCode string) (*PropertyTypesResponse, error){
+	pt := m.CountryPropertyTypes[countryCode]
+	return &PropertyTypesResponse{PropertyTypes: pt}, nil
 }
