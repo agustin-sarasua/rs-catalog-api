@@ -49,3 +49,16 @@ func GetCatalogCountryPropertyTypesEndpoint(w http.ResponseWriter, req *http.Req
 		json.NewEncoder(w).Encode(v)
 	}
 }
+
+func GetCatalogCountryAmenitiesEndpoint(w http.ResponseWriter, req *http.Request) {
+	country, _ := mux.Vars(req)["country"]
+	if v, err := GetCatalogCountryPropertyTypes(country); err != nil {
+		log.Printf("Error getting propertyTypes")
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(m.BuildErrorResponse([]error{err}))
+	} else {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(v)
+	}
+}

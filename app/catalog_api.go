@@ -9,6 +9,6 @@ type CatalogConfigurationResponse struct {
 	Guarantees     []string
 }
 
-type PropertyTypesResponse struct{
-	PropertyTypes []m.NameCode
+type ConfigurationResponse struct{
+	Items []m.NameCode
 }

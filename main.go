@@ -13,7 +13,8 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/catalog/{country:[UY|AR]+}/{city:.+}", app.GetCatalogConfigurationEndpoint).Methods("GET")
 	router.HandleFunc("/catalog/country/{country:[UY|AR]+}", app.GetCatalogCountryConfigurationEndpoint).Methods("GET")
-	router.HandleFunc("/catalog/country/{country:[UY|AR]+}/property-types", app.GetCatalogCountryPropertyTypesEndpoint).Methods("GET")
+	router.HandleFunc("/catalog/config/{country:[UY|AR]+}/property-types", app.GetCatalogCountryPropertyTypesEndpoint).Methods("GET")
+	router.HandleFunc("/catalog/config/{country:[UY|AR]+}/amenities", app.GetCatalogCountryAmenitiesEndpoint).Methods("GET")
 
 	fmt.Println("Hello there")
 	log.Fatal(http.ListenAndServe(":8080", router))

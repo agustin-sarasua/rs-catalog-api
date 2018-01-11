@@ -41,7 +41,12 @@ func GetCatalogCountryConfiguration(countryCode string) (*m.CountryConfig, error
 	return &countryCitites, nil
 }
 
-func GetCatalogCountryPropertyTypes(countryCode string) (*PropertyTypesResponse, error){
+func GetCatalogCountryPropertyTypes(countryCode string) (*ConfigurationResponse, error){
 	pt := m.CountryPropertyTypes[countryCode]
-	return &PropertyTypesResponse{PropertyTypes: pt}, nil
+	return &ConfigurationResponse{Items: pt}, nil
+}
+
+func GetCatalogCountryAmenities(countryCode string) (*ConfigurationResponse, error){
+	pt := m.CountryAmenities[countryCode]
+	return &ConfigurationResponse{Items: pt}, nil
 }
